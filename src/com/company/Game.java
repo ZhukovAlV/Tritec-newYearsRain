@@ -8,11 +8,13 @@ public class Game {
     // Главный метод, который запускает игру
     public static void main(String[] args) {
         String rez;
+        int slogn;
         // Сложность игры
         rez = JOptionPane.showInputDialog(null,
                 "Введите сложность игры от 1 до 7",
                 "Сложность игры", JOptionPane.INFORMATION_MESSAGE);
-        int slogn = Integer.parseInt(rez);
+        if (rez == null || rez.equals("")) slogn = 0;
+        else slogn = Integer.parseInt(rez);
 
         // Проверка на ввод корректной сложности игры
         if(slogn >= 1 && slogn <= 7) {

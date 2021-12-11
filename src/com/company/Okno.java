@@ -31,7 +31,7 @@ public class Okno extends JFrame {
 
         setVisible(true);
 
-        // Устанавливаем слушаетял на клавиатуру
+        // Устанавливаем слушателя на клавиатуру
         addKeyListener(new MyKey());
     }
 
