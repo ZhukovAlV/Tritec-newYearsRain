@@ -16,8 +16,6 @@ public class Pole extends JPanel {
     private Image fon;
     // Переменная для размещения супергероя
     public int x = 400, y = 500;
-    // Переменная сложности игры
-    private int slogn;
     // Массив с картинками подарков
     private Podar[] massPodar;
     //Размер массива
@@ -31,10 +29,8 @@ public class Pole extends JPanel {
     // Количество собранных подарков
     int kolPodarCount;
 
-    public Pole(int slogn) {
+    public Pole() {
 
-        // Выставляем сложность игры
-        this.slogn = slogn;
 
         // Загружаем фон
         try {
@@ -142,10 +138,7 @@ public class Pole extends JPanel {
         for (int i = 0; i < masSize; i++) {
             // Если подарок не на игровом поле
             if (massPodar[i].act == false) {
-                if (kol < slogn) {
                     massPodar[i].start();
-                    break;
-                }
             } else kol++;
         }
     }

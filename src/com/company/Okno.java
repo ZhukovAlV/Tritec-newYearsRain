@@ -9,14 +9,12 @@ public class Okno extends JFrame {
 
     // Игровое поле
     private Pole gamePole;
-    // Сложность игры
-    private int slogn;
+
 
     // Конструктор окна (задаем необходимые параметры)
-    public Okno(int slogn) {
+    public Okno() {
 
-        // Задаем сложность игры
-        this.slogn = slogn;
+
 
         // Задаем параметры для окна
         setFocusable(true);
@@ -25,7 +23,7 @@ public class Okno extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Создание объекта игрового поля
-        gamePole = new Pole(slogn);
+        gamePole = new Pole();
         Container container = getContentPane();
         container.add(gamePole);
 
