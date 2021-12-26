@@ -24,6 +24,8 @@ public class Pole extends JPanel {
     int masSize = 7;
     // Картинка окончания игры
     private Image endGame;
+    // Картинка успешного окончания игры
+    private Image successEndGame;
     // Таймеры
     public Timer timerUpdate, timerDraw;
     // Количество собранных подарков
@@ -38,14 +40,14 @@ public class Pole extends JPanel {
         try {
             fon = ImageIO.read(new File("resource/fon.png"));
         } catch (IOException e) {
-            System.out.println("Не удалось загрузить файл");
+            System.out.println("Не удалось загрузить файл фона");
         }
 
         // Загружаем героя
         try {
             shapka = ImageIO.read(new File("resource/person.png"));
         } catch (IOException e) {
-            System.out.println("Не удалось загрузить файл");
+            System.out.println("Не удалось загрузить файл героя");
         }
 
         // Загружаем подарки
@@ -55,7 +57,7 @@ public class Pole extends JPanel {
                 Image img = ImageIO.read(new File("resource/gift" + (i+1) + ".png"));
                 massPodar[i] = new Podar(img);
             } catch (IOException e) {
-                System.out.println("Не удалось загрузить файл");
+                System.out.println("Не удалось загрузить файлы подарков");
             }
         }
 
@@ -63,7 +65,14 @@ public class Pole extends JPanel {
         try {
             endGame = ImageIO.read(new File("resource/end_game.png"));
         } catch (IOException e) {
-            System.out.println("Не удалось загрузить файл");
+            System.out.println("Не удалось загрузить файл окончания игры");
+        }
+
+        // Загружаем файл успешного конца игры
+        try {
+            successEndGame = ImageIO.read(new File("resource/success_end.jpg"));
+        } catch (IOException e) {
+            System.out.println("Не удалось загрузить файл успешного окончания игры");
         }
 
         // Подаркогенератор
@@ -109,11 +118,16 @@ public class Pole extends JPanel {
                     kolPodarCount++;
                 // А если подарок пропущен, то конец игры
                 } else if((massPodar[i].y + massPodar[i].getImg().getHeight(null) >= 730)) {
-                    // Рисуем окончание игры
+                    // Рисуем неуспешное окончание игры
                     g.drawImage(endGame, 0, 0, null);
                     timerDraw.stop();
                     timerUpdate.stop();
                     break;
+                } else if (kolPodarCount >=6) {
+                    // Рисуем успешное окончание игры
+                    g.drawImage(successEndGame, 0, 0, null);
+                    timerDraw.stop();
+                    timerUpdate.stop();
                 }
 
                 // Двигаем подарок вниз
