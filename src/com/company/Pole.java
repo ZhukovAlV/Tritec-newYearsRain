@@ -10,24 +10,30 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class Pole extends JPanel {
-    // Наш супергерой, который собирает подарки
-    private Image shapka;
+    // Наш герой
+    private Hero hero = new Hero();
+
     // Фон для игры
     private Image fon;
-    // Переменная для размещения супергероя
-    public int x = 400, y = 500;
+
     // Переменная сложности игры
     private int slogn;
+
     // Массив с картинками подарков
     private Podar[] massPodar;
+
     //Размер массива
     int masSize = 7;
+
     // Картинка окончания игры
     private Image endGame;
+
     // Картинка успешного окончания игры
     private Image successEndGame;
+
     // Таймеры
     public Timer timerUpdate, timerDraw;
+
     // Количество собранных подарков
     int kolPodarCount;
 
@@ -41,13 +47,6 @@ public class Pole extends JPanel {
             fon = ImageIO.read(new File("resource/fon.png"));
         } catch (IOException e) {
             System.out.println("Не удалось загрузить файл фона");
-        }
-
-        // Загружаем героя
-        try {
-            shapka = ImageIO.read(new File("resource/person.png"));
-        } catch (IOException e) {
-            System.out.println("Не удалось загрузить файл героя");
         }
 
         // Загружаем подарки
@@ -100,7 +99,7 @@ public class Pole extends JPanel {
         g.drawImage(fon,0,0,null);
 
         // Рисуем супергероя
-        g.drawImage(shapka,x,y,null);
+        g.drawImage(hero.getImage(),hero.getX(),hero.getY(),null);
 
         // Рисуем подарки
         for (int i = 0; i < masSize; i++) {
@@ -110,7 +109,7 @@ public class Pole extends JPanel {
                 massPodar[i].draw(g);
 
                 // Если герой до него дотронулся, то выключаем подарок
-                if (massPodar[i].y + 70 > y && (Math.abs(massPodar[i].x - x) < 80)) {
+                if (massPodar[i].y + 70 > hero.getY() && (Math.abs(massPodar[i].x - hero.getX()) < 80)) {
                     System.out.println("Герой дотронулся до подарка " + massPodar[i]);
                     massPodar[i].act = false;
 
@@ -148,5 +147,9 @@ public class Pole extends JPanel {
                 }
             } else kol++;
         }
+    }
+
+    public Hero getHero() {
+        return hero;
     }
 }

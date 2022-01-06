@@ -49,12 +49,12 @@ public class Okno extends JFrame {
                 System.exit(0);
                 // Если нажата клавища ВЛЕВО
             } else if (keyValue == 37) {
-                if(gamePole.x - 30 > -48) gamePole.x -=30;
-                else gamePole.x = 752;
+                if(gamePole.getHero().getX() - 30 > -48) gamePole.getHero().setX(gamePole.getHero().getX() - 30);
+                else gamePole.getHero().setX(752);
                 // Если нажата клавища ВПРАВО
             } else if (keyValue == 39) {
-                if(gamePole.x + 30 < 994) gamePole.x +=30;
-                else gamePole.x = -48;
+                if(gamePole.getHero().getX() + 30 < 994) gamePole.getHero().setX(gamePole.getHero().getX() + 30);
+                else gamePole.getHero().setX(48);
             }
         }
 
